@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioUserFile ProjectCreator="Intel Fortran" Keyword="Console Application" Version="11.0" ProjectIdGuid="{866B9196-5A74-4789-88AE-BD16ADD1C824}">
+	<Configurations>
+		<Configuration Name="Debug|Win32"/>
+		<Configuration Name="Release|Win32"/>
+		<Configuration Name="Debug|x64" CommandArguments="case1.cgn" WorkingDirectory="D:\iRIC\Nays2D_flood_kairyo2\sample_data\N2Fver3Xband3gunma_dem_Xrain_inflow_small" Environment="path=C:\Users\hamaki.KOEI-NET\iRIC\guis\prepost"/>
+		<Configuration Name="Release|x64"/></Configurations></VisualStudioUserFile>
