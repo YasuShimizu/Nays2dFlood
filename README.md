@@ -3,10 +3,10 @@ Nays2dFlood
 
 
 
-# ‚Í‚¶‚ß‚É
+
+# How to run
+
+$ nays2dflood.exe Case1.cgn
 
 
 
-# link
-
-[Qiita page in Japanese](htttp://)
