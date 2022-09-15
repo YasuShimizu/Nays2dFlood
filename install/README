@@ -1,0 +1,3 @@
+﻿Nays 2D Flood is a flood flow analysis solver that relies on unsteady 2-dimensional plane flow simulation using boundary-fitted coordinates  as the general curvilinear coordinates. This solver adopts the 2-dimensional plane flow simulation of the Nays2D Solver developed by Professor Yasuyuki Shimizu of Hokkaido University for flood flow analysis. 
+
+The solver easily enables the user to set the inflow conditions of an arbitrary number of inflow rivers that enter from the upstream end or sides of a river. It has been applied to the flood flow analysis of small/mid-scale rivers. Because the solver does not require river channel data, it is also used for the flood process analysis of primitive rivers and rivers in developing countries.

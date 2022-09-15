@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition 
+	xmlns="www.iric.net/SolverDefinition/1.0"
+	name="naysflood" caption="Nays2D Flood v5.0 64 bit" version="5.0.1509" copyright="Yasuyuki Shimizu"
+	release="2018.11.30" homepage="http://i-ric.org"
+	executable="Nays2d_flood.exe"
+	iterationtype="time"
+	gridtype="structured2d"
+>
+	<CalculationCondition>
+		<Tab name="Boundary Conditions 1" caption="Inflow/Outflow Boundary Conditions">
+			<Content>
+				<Items>
+					<Item name="i_sec_hour" caption="Time unit of discharge/water surface file">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<Enumeration value="1" caption="Second"/>
+								<Enumeration value="2" caption="Hour"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="j_side_j1" caption="Boundary Conditions for j=1">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<Enumeration value="0" caption="Wall"/>
+								<Enumeration value="1" caption="Outflow"/>
+								<Enumeration value="2" caption="Inflow"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="j_side_j2" caption="Boundary Conditions for j=nj">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<Enumeration value="0" caption="Wall"/>
+								<Enumeration value="1" caption="Outflow"/>
+								<Enumeration value="2" caption="Inflow"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+
+					<Item name="j_wl" caption="Water surface at downstream">
+						<Definition conditionType="constant" valueType="integer" option="true" default="3">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant value"/>
+								<Enumeration value="2" caption="Read from file"/>
+								<Enumeration value="3" caption="Free outflow"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="h_down" caption="Constant value (m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.0">
+							<Dependency>
+								<Condition type="isEqual" target="j_wl" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="stage_at_downstream" caption="Stage at downstream time series">
+						<Definition conditionType="functional">
+							<Parameter valueType="real" caption="Time"/>
+							<Value valueType="real" caption="Water Level(m)"/>
+							<Dependency>
+								<Condition type="isEqual" target="j_wl" value="2"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="j_rain" caption="Rainfall">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<Enumeration value="1" caption="without"/>
+								<Enumeration value="2" caption="with"/>
+								<Enumeration value="3" caption="with(Xrain)"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="rain_time" caption="Rainfall time series(mm/h)">
+						<Definition conditionType="functional">
+							<Parameter valueType="real" caption="Time"/>
+							<Value valueType="real" caption="Rainfall(mm/hour)"/>
+							<Dependency>
+								<Condition type="isEqual" target="j_rain" value="2"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="initial_surface" caption="Initial Water Surface">
+			<Content>
+				<Items>
+					<Item name="i_flow" caption="Initial water surface">
+						<Definition conditionType="constant" valueType="integer" option="true" default="4">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant slope"/>
+								<Enumeration value="4" caption="Depth = 0"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="h_slope" caption="Initial water surface slope of main channel">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.001">
+							<Dependency>
+								<Condition type="isEqual" target="i_flow" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="time" caption="Time">
+			<Content>
+				<Items>
+					<Item name="tuk" caption="Output time interval (sec)">
+						<Definition conditionType="constant" valueType="real" option="false" default="600"/>
+					</Item>
+					<Item name="dt" caption="Calculation time step (sec)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.01"/>
+					</Item>
+					<Item name="t_out_start" caption="Start time of output (sec)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.0"/>
+					</Item>
+					<Item name="bomber_time" caption="Start time of bomber (sec)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.0"/>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="others" caption="Others">
+			<Content>
+				<Items>
+					<Item name="j_cip" caption="Finite differential method of advection terms">
+						<Definition conditionType="constant" valueType="integer" option="true" default="2">
+							<Enumerations>
+								<Enumeration value="1" caption="upwind scheme"/>
+								<Enumeration value="2" caption="CIP method"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="lmax" caption="Maximum number of iterations of water surface calculation">
+						<Definition conditionType="constant" valueType="integer" option="false" default="10"/>
+					</Item>
+					<Item name="alh" caption="Relaxation coefficient for water surface calculation">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.8"/>
+					</Item>
+					<Item name="hmin" caption="Minimum water depth">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.01"/>
+					</Item>
+                    			<Item name="a_snu" caption="A for eddy viscosity coefficient (k/6u*h x A + B)">
+						<Definition conditionType="constant" valueType="real" option="false" default="1.0"/>
+					</Item>
+					<Item name="b_snu" caption="B for eddy viscosity coefficient (k/6u*h x A + B)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.0"/>
+					</Item>
+                    <!--docon add start-->
+					<Item name="n_parallel" caption="Number of threads for paralle computation (Only multi core PC)">
+						<Definition conditionType="constant" valueType="integer" option="false" default="1"/>
+					</Item>
+                    <!--docon add end-->
+					<Item name="j_qbl" caption="Inundation of buildings">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="cdd" caption="Model parameter for flow resistance by buildings">
+						<Definition conditionType="constant" valueType="real" option="true" default="0.383"/>
+					</Item>
+					<Item name="j_gam" caption="How to calculate gamma">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="gam_x=gam_y=1-sqrt(1-gam_v)"/>
+								<Enumeration value="1" caption="gam_x=gam_y=gam_v"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+			<!-- RMCD changed Bed Elevation to Elevation for consistency in MD_SWMS -->
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Obstacle" caption="Obstacle">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal cell" />
+					<Enumeration value="1" caption="Obstacle" />
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<Item name="Xrain" caption="Xrain">
+			<Definition position="cell" valueType="real" default="0">
+				<Dimension name="Time" caption="Time" valueType="real"/>
+			</Definition>
+		</Item>
+		<Item name="Bomb" caption="Bomber">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal cell" />
+					<Enumeration value="1" caption="Bomber cell" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="channelcondition" caption="Roughness condition">
+			<Definition position="cell" valueType="real" default="0.03" option="false">
+			</Definition>
+		</Item>
+		<Item name="grainsize_distribution" caption="GrainSizeDistribution">
+			<Definition position="node" valueType="functional" option="true">
+				<Parameter valueType="integer" caption="Size Class" />
+				<Value valueType="real" caption="Ratio" />
+			</Definition>
+		</Item>
+		<Item name="roughness_example">
+			<Definition position="node">
+				<Attributes>
+					<Attribute name="Depth" caption="Depth" valueType="integer" />
+					<Attribute name="Parameter1" caption="Parameter1" valueType="real" />
+					<Attribute name="Parameter2" caption="Parameter2" valueType="real" />
+				</Attributes>
+			</Definition>
+		</Item>
+		<Item name="Share" caption="Areal fraction that buildings occupy(max=0.95)">
+				<Definition position="cell" valueType="real" default="0.00" option="false">
+			</Definition>
+		</Item>
+	</GridRelatedCondition>
+	<BoundaryCondition name="inflow" caption="Inflow" position="edge">
+		<Item name="qt1" caption="Discharge time series">
+			<Definition conditionType="functional">
+				<Parameter valueType="real" caption="Time"/>
+				<Value valueType="real" caption="Discharge(m3/s)"/>
+			</Definition>
+		</Item>
+		<Item name="slope1" caption="Slope value at inflow">
+			<Definition valueType="real" default="0.001">
+			</Definition>
+		</Item>
+	</BoundaryCondition>
+
+    <!--docon add start-->
+    <!--ボックスカルバート関連-->
+	<BoundaryCondition name="BoxCulvert" caption="BoxCulvert" position="cell">
+		<Item name="bc_couple_num" caption="Coupling code number">
+			<Definition valueType="integer" default="1">
+			</Definition>
+		</Item>
+		<Item name="bc_inout" caption="Inlet/Outlet">
+			<Definition valueType="integer" default="0">
+                <Enumeration value="0" caption="Inlet"/>
+                <Enumeration value="1" caption="Outlet"/>
+			</Definition>
+		</Item>
+		<Item name="bc_width" caption="Width(m)">
+			<Definition valueType="real" default="2.000">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="bc_height" caption="Height(m)">
+			<Definition valueType="real" default="2.000">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="bc_base" caption="Elevation(m)">
+			<Definition valueType="real" default="0.000">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="bc_ren" caption="Multiply">
+			<Definition valueType="real" default="1.000">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="bc_c2_yesno" caption="Extended formula">
+			<Definition valueType="integer" default="0">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+               		<Enumeration value="0" caption="No"/>
+                	<Enumeration value="1" caption="Yes"/>
+			</Definition>
+		</Item>
+	    <Item name="bc_c1" caption="Coefficient of submerged flow">
+			<Definition valueType="real" default="0.750">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="bc_c2" caption="Coefficient of subsurface flow">
+			<Definition valueType="real" default="0.510">
+				<Condition type="and">
+	            	<Condition type="isEqual" target="bc_c2_yesno" value="1"/>
+    	        	<Condition type="isEqual" target="bc_inout" value="0"/>
+				</Condition>
+			</Definition>
+		</Item>
+		<Item name="bc_c3" caption="Coefficient of free flow">
+			<Definition valueType="real" default="0.790">
+            	<Condition type="isEqual" target="bc_inout" value="0"/>
+			</Definition>
+		</Item>
+	</BoundaryCondition>
+
+    <!--樋門関連-->
+	<BoundaryCondition name="Gate" caption="Gate" position="cell">
+		<Item name="gt_couple_num" caption="Coupling code number">
+			<Definition valueType="integer" default="1">
+			</Definition>
+		</Item>
+		<Item name="gt_inout" caption="Inlet/Outlet">
+			<Definition valueType="integer" default="0">
+                <Enumeration value="0" caption="Inlet"/>
+                <Enumeration value="1" caption="Outlet"/>
+			</Definition>
+		</Item>
+		<Item name="gt_width" caption="Width(m)">
+			<Definition valueType="real" default="2.000">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="gt_height" caption="Height(m)">
+			<Definition valueType="real" default="2.000">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="gt_base" caption="Elevation(m)">
+			<Definition valueType="real" default="0.000">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="gt_ren" caption="Multiply">
+			<Definition valueType="real" default="1.000">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="gt_c2_yesno" caption="Extended formula">
+			<Definition valueType="integer" default="0">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+                	<Enumeration value="0" caption="No"/>
+                	<Enumeration value="1" caption="Yes"/>
+			</Definition>
+		</Item>
+	    <Item name="gt_c1" caption="Coefficient of submerged flow">
+			<Definition valueType="real" default="0.750">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="gt_c2" caption="Coefficient of subsurface flow">
+			<Definition valueType="real" default="0.510">
+				<Condition type="and">
+	            	<Condition type="isEqual" target="gt_c2_yesno" value="1"/>
+            		<Condition type="isEqual" target="gt_inout" value="0"/>
+				</Condition>
+			</Definition>
+		</Item>
+		<Item name="gt_c3" caption="Coefficient of free flow">
+			<Definition valueType="real" default="0.790">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+			</Definition>
+		</Item>
+		<Item name="gt_method" caption="Open/Close operation">
+			<Definition valueType="integer" default="0">
+            	<Condition type="isEqual" target="gt_inout" value="0"/>
+                	<Enumeration value="0" caption="Automatic"/>
+                	<Enumeration value="1" caption="Set data"/>
+			</Definition>
+		</Item>
+		<Item name="gt_openclose" caption="Open/Close operation time series">
+			<Definition conditionType="functional">
+				<Parameter valueType="real" caption="Time"/>
+					<Value valueType="integer" caption="Open/Close operation"/>
+						<Condition type="and">
+	            			<Condition type="isEqual" target="gt_inout" value="0"/>
+            				<Condition type="isEqual" target="gt_method" value="1"/>
+						</Condition>
+			</Definition>
+		</Item>
+		<Item name="gt_outwl" caption="Outside water level">
+			<Definition valueType="integer" default="0">
+            	<Condition type="isEqual" target="gt_inout" value="1"/>
+                	<Enumeration value="0" caption="Not set"/>
+                	<Enumeration value="1" caption="Set data"/>
+			</Definition>
+		</Item>
+		<Item name="wl1" caption="Water level time series">
+			<Definition conditionType="functional">
+				<Parameter valueType="real" caption="Time"/>
+					<Value valueType="real" caption="Water level(m)"/>
+						<Condition type="and">
+            				<Condition type="isEqual" target="gt_inout" value="1"/>
+            				<Condition type="isEqual" target="gt_outwl" value="1"/>
+						</Condition>
+			</Definition>
+		</Item>
+	</BoundaryCondition>
+
+    <!--ポンプ関連-->
+	<BoundaryCondition name="Pump" caption="Pump" position="cell">
+		<Item name="p_couple_num" caption="Coupling code number">
+			<Definition valueType="integer" default="1">
+			</Definition>
+		</Item>
+		<Item name="p_inout" caption="Inlet/Outlet">
+			<Definition valueType="integer" default="0">
+                <Enumeration value="0" caption="Inlet"/>
+                <Enumeration value="1" caption="Outlet"/>
+			</Definition>
+		</Item>
+		<Item name="p_method" caption="Auto/Set data">
+			<Definition valueType="integer" default="0">
+            	<Condition type="isEqual" target="p_inout" value="0"/>
+                	<Enumeration value="0" caption="Automatic"/>
+                	<Enumeration value="1" caption="Set data"/>
+			</Definition>
+		</Item>
+		<Item name="p_qmax" caption="Maximum drainage discharge(m3/s)">
+			<Definition valueType="real" default="10.0">
+				<Condition type="and">
+	            	<Condition type="isEqual" target="p_inout" value="0"/>
+	            	<Condition type="isEqual" target="p_method" value="0"/>
+				</Condition>
+			</Definition>
+		</Item>
+		<Item name="p_startope" caption="Begin operating water level(m)">
+			<Definition valueType="real" default="0.0">
+				<Condition type="and">
+	            	<Condition type="isEqual" target="p_inout" value="0"/>
+	            	<Condition type="isEqual" target="p_method" value="0"/>
+				</Condition>
+			</Definition>
+		</Item>
+		<Item name="p_stopope" caption="Stop operating water level(m)">
+			<Definition valueType="real" default="9999.0">
+				<Condition type="and">
+	            	<Condition type="isEqual" target="p_inout" value="0"/>
+	            	<Condition type="isEqual" target="p_method" value="0"/>
+				</Condition>
+			</Definition>
+		</Item>
+		<Item name="qt2" caption="Drainage discharge time series">
+			<Definition conditionType="functional">
+				<Parameter valueType="real" caption="Time"/>
+				<Value valueType="real" caption="Discharge(m3/s)"/>
+				<Condition type="or">
+					<Condition type="and">
+		            	<Condition type="isEqual" target="p_inout" value="0"/>
+		            	<Condition type="isEqual" target="p_method" value="1"/>
+					</Condition>
+	            	<Condition type="isEqual" target="p_inout" value="1"/>
+				</Condition>
+			</Definition>
+		</Item>
+	</BoundaryCondition>
+    <!--docon add end-->
+
+</SolverDefinition>
