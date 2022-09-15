@@ -603,7 +603,7 @@ module initl_m		! --------------------------------------------------------------
 				end do
 			end do
 !i
-!i ‰Šú…–ÊŒ`‚ªˆê’èŒù”z‚à—˜—p‚Å‚«‚é‚æ‚¤‚ÉB
+!i åˆæœŸæ°´é¢å½¢ãŒä¸€å®šå‹¾é…ã‚‚åˆ©ç”¨ã§ãã‚‹ã‚ˆã†ã«ã€‚
 !i
 			if( j_side1==1 ) then
 				do i=1,nx
@@ -627,7 +627,7 @@ module initl_m		! --------------------------------------------------------------
 !i
 		end if
 !
-			! ---- ”Ã—”ŒvZ‚Å‚Íslope‚ª‹‚ß‚ç‚ê‚È‚¢‚Ì‚Å–³Œø‚É‚·‚é ----
+			! ---- æ°¾æ¿«è¨ˆç®—ã§ã¯slopeãŒæ±‚ã‚ã‚‰ã‚Œãªã„ã®ã§ç„¡åŠ¹ã«ã™ã‚‹ ----
 
 !		do i=1,nx-1
 !			qc(i)=0.d0
@@ -653,7 +653,7 @@ module initl_m		! --------------------------------------------------------------
 !			end do
 !		end do
 !
-			! ---- ”Ã—”ŒvZ‚Å‚Í‰Šú—¬‘¬‚Í0 ----
+			! ---- æ°¾æ¿«è¨ˆç®—ã§ã¯åˆæœŸæµé€Ÿã¯0 ----
 
 		do j=1-j_side1,ny+j_side2
 			do i=1,nx-1
@@ -756,7 +756,7 @@ end module initl_m		! ----------------------------------------------------------
 	end subroutine hshift
 !
 ! --------------------------------------------------------------------
-	subroutine snucal(snu00,a_snu,b_snu)	!inoue ‰Q“®”S«ŒW”‚Ì•â³
+	subroutine snucal(snu00,a_snu,b_snu)	!inoue æ¸¦å‹•ç²˜æ€§ä¿‚æ•°ã®è£œæ­£
 		use common_hh
 		use variables
 		implicit none
@@ -845,7 +845,7 @@ end module initl_m		! ----------------------------------------------------------
 					/(b_ups(i)*sqrt(upv_slope_in(i))))**(3./5.)*100.
 		end do
 !
-! ã—¬’[…ˆÊ‚ÌŒvZ
+! ä¸Šæµç«¯æ°´ä½ã®è¨ˆç®—
 !
 		do ii=1,j_in
 			do n=0,nq
@@ -943,7 +943,7 @@ end module initl_m		! ----------------------------------------------------------
 					/(b_ups(i)*sqrt(vpv1_slope_in(i))))**(3./5.)*100.
 		end do
 !
-! ã—¬’[…ˆÊ‚ÌŒvZ
+! ä¸Šæµç«¯æ°´ä½ã®è¨ˆç®—
 !
 		do ii=1,jsin1
 			do n=0,nq
@@ -1036,7 +1036,7 @@ end module initl_m		! ----------------------------------------------------------
 					/(b_ups(i)*sqrt(vpv2_slope_in(i))))**(3./5.)*100.
 		end do
 !
-! ã—¬’[…ˆÊ‚ÌŒvZ
+! ä¸Šæµç«¯æ°´ä½ã®è¨ˆç®—
 !
 		do ii=1,jsin2
 			do n=0,nq
@@ -1380,7 +1380,7 @@ program nays2d_flood_parallel
 				, kmod, ndry, lcount, iofrg, ndeposit, n_parallel,total_bomb, qtmpin, nqtcell
 	double precision :: skp, snu00, h_down, bh_slope, upv_slope, h_slope	&
 						, x_bk, h_slope_1, h_slope_2, e_thic, tantc	&
-						, t_out_start, alh, slambda, rho, a_snu, b_snu	&	!inoue ‰Q“®”S«ŒW”‚Ì•â³
+						, t_out_start, alh, slambda, rho, a_snu, b_snu	&	!inoue æ¸¦å‹•ç²˜æ€§ä¿‚æ•°ã®è£œæ­£
 						, snst, r_tantc, t_xx, thstart, qp, etime	&
 						, d10, d50, d90, dm0, sn_g, cw, sigma_c, calculated_slope	&
 						, slope, hs_dse	&
@@ -1392,7 +1392,7 @@ program nays2d_flood_parallel
 	double precision,dimension(:),allocatable :: q_tmp_dis, ni_dis_cell
 	double precision,dimension(:,:),allocatable :: q_cell_dis
 
-!inoue Œš•¨‘jŠQ—¦ hamaki ver
+!inoue å»ºç‰©é˜»å®³ç‡ hamaki ver
 	double precision,dimension(:,:),allocatable :: sh4
 	integer :: j_gam
 !inoue
@@ -1421,7 +1421,7 @@ program nays2d_flood_parallel
 	write(*,*) 'Copyright(C) by Yasuyuki Shimizu, Hokkaido Univ., Japan'
 	write(*,*) 'Modified by Ichiro Kimura, Toshiki Iwasaki, Satomi Kawamura, Takuya Inoue , Michihiro Hamaki , Takeshi Takemura'
 
-	call system_clock(cal_t1)	!h160105 ŒvZŠJn
+	call system_clock(cal_t1)	!h160105 è¨ˆç®—é–‹å§‹æ™‚æ™‚åˆ»
 
 	icount = nargs() 	!for intelfortran
 !	icount = iargc()	!for gfortran
@@ -1453,7 +1453,7 @@ program nays2d_flood_parallel
 		call cg_error_print_f()
 	ENDIF
 
-   !gui‚Écgnsƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Å‚ ‚é‚±‚Æ‚ğ’m‚ç‚¹‚éƒtƒ@ƒCƒ‹‚ğ¶¬
+   !guiã«cgnsãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­è¾¼ã¿ã§ã‚ã‚‹ã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆ
    call iric_initoption_f(IRIC_OPTION_CANCEL, ier)
 
 ! ---- Read computational condition ----
@@ -1463,80 +1463,80 @@ program nays2d_flood_parallel
 
 	CALL CG_IRIC_READ_INTEGER_F('j_wl', j_wl, ier) !i
 !
-!			j_wl = 0 ...‰º—¬’[…ˆÊˆê’è’l‚ğ—^‚¦‚é(h_down)
-!			j_wl = 1 ...‰º—¬’[…ˆÊ‚Í“™—¬ŒvZ‚Å‹‚ß‚éË!i‚Í‚ñ—”ƒ‚ƒfƒ‹‚Å‚Í“™—¬‹NZ‚È‚µ
-!			j_wl = 2 ...‰º—¬’[…ˆÊ‚Íƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
-!			j_wl = 3 ...‰º—¬’[‚Ì…[‚ÍC‘O‚ÌƒOƒŠƒbƒg‚ÌƒRƒs[‚É‚·‚é
+!			j_wl = 0 ...ä¸‹æµç«¯æ°´ä½ä¸€å®šå€¤ã‚’ä¸ãˆã‚‹(h_down)
+!			j_wl = 1 ...ä¸‹æµç«¯æ°´ä½ã¯ç­‰æµè¨ˆç®—ã§æ±‚ã‚ã‚‹â‡’!iã¯ã‚“æ¿«ãƒ¢ãƒ‡ãƒ«ã§ã¯ç­‰æµèµ·ç®—ãªã—
+!			j_wl = 2 ...ä¸‹æµç«¯æ°´ä½ã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
+!			j_wl = 3 ...ä¸‹æµç«¯ã®æ°´æ·±ã¯ï¼Œå‰ã®ã‚°ãƒªãƒƒãƒˆã®ã‚³ãƒ”ãƒ¼ã«ã™ã‚‹
 
 
 	CALL CG_IRIC_READ_REAL_F('h_down', h_down, ier)
 !
-!			h_dwown = ‰º—¬’[…ˆÊ‚Ì’l(ã‹Lj_wl=0‚Ì‚Ì‚İ—LŒø)
+!			h_dwown = ä¸‹æµç«¯æ°´ä½ã®å€¤(ä¸Šè¨˜j_wl=0ã®æ™‚ã®ã¿æœ‰åŠ¹)
 !
 
 	CALL CG_IRIC_READ_INTEGER_F('j_rain', j_rain, ier) !i
 !
-!			j_rain =1	~‰J‚È‚µ
-!			j_rain =2	~‰J‚ ‚è(‘S—Ìˆæ“¯‚¶Œn—ñƒf[ƒ^)
-!			j_rain =3	~‰J‚ ‚è(Xrain‘Î‰)
+!			j_rain =1	é™é›¨ãªã—
+!			j_rain =2	é™é›¨ã‚ã‚Š(å…¨é ˜åŸŸåŒã˜æ™‚ç³»åˆ—ãƒ‡ãƒ¼ã‚¿)
+!			j_rain =3	é™é›¨ã‚ã‚Š(Xrainå¯¾å¿œ)
 !
 
-	j_slope=0  		!i‚Í‚ñ—”ƒ‚ƒfƒ‹‚Å‚Í“™—¬‹NZ‚È‚µ
+	j_slope=0  		!iã¯ã‚“æ¿«ãƒ¢ãƒ‡ãƒ«ã§ã¯ç­‰æµèµ·ç®—ãªã—
 
-	bh_slope=0.  	!i‚Í‚ñ—”ƒ‚ƒfƒ‹‚Å‚Í“™—¬‹NZ‚È‚µ
+	bh_slope=0.  	!iã¯ã‚“æ¿«ãƒ¢ãƒ‡ãƒ«ã§ã¯ç­‰æµèµ·ç®—ãªã—
 !
 ! ------ Parameters for Upstream Boundary ------
 
-	j_upv = 1   	 !i‚Í‚ñ—”ƒ‚ƒfƒ‹‚Å‚Íg‚í‚È‚¢Bƒ_ƒ~[ƒf[ƒ^
+	j_upv = 1   	 !iã¯ã‚“æ¿«ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ã‚ãªã„ã€‚ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 !
-!			j_upv =1 ã—¬’[‚Ì—¬‘¬‚ğ“™—¬ŒvZ‚Å—^‚¦‚é
-!			j_upv =2 ã—¬’[‚Ì—¬‘¬‚ğAã—¬’[‚Ì…[‚ğg‚Á‚Ä—¬—Ê‚©‚ç‹tZ‚·‚é
+!			j_upv =1 ä¸Šæµç«¯ã®æµé€Ÿã‚’ç­‰æµè¨ˆç®—ã§ä¸ãˆã‚‹
+!			j_upv =2 ä¸Šæµç«¯ã®æµé€Ÿã‚’ã€ä¸Šæµç«¯ã®æ°´æ·±ã‚’ä½¿ã£ã¦æµé‡ã‹ã‚‰é€†ç®—ã™ã‚‹
 !
-	j_upv_slope=1      !i‚Í‚ñ—”ƒ‚ƒfƒ‹‚Å‚Íg‚í‚È‚¢Bƒ_ƒ~[ƒf[ƒ^
+	j_upv_slope=1      !iã¯ã‚“æ¿«ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ã‚ãªã„ã€‚ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 !
-!			ã‹Lj_upv=1‚Ì‚Æ‚«‚Ì“™—¬ŒvZ‚Ég—p‚·‚éŒù”z‚Ì—^‚¦•û
-!			j_upv_slope=0 .... ‰Í°ƒf[ƒ^‚©‚ç©“®“I‚ÉŒvZ
-!			j_upv_slope=1 .... ’l‚ğ—^‚¦‚é¨‚±‚Ìê‡‚ÍŸ‚Ì€–Ú‚Ìuvp_slope
+!			ä¸Šè¨˜j_upv=1ã®ã¨ãã®ç­‰æµè¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹å‹¾é…ã®ä¸ãˆæ–¹
+!			j_upv_slope=0 .... æ²³åºŠãƒ‡ãƒ¼ã‚¿ã‹ã‚‰è‡ªå‹•çš„ã«è¨ˆç®—
+!			j_upv_slope=1 .... å€¤ã‚’ä¸ãˆã‚‹â†’ã“ã®å ´åˆã¯æ¬¡ã®é …ç›®ã®uvp_slope
 !
-	upv_slope=0.001      !i‚Í‚ñ—”ƒ‚ƒfƒ‹‚Å‚Íg‚í‚È‚¢Bƒ_ƒ~[ƒf[ƒ^
+	upv_slope=0.001      !iã¯ã‚“æ¿«ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ã‚ãªã„ã€‚ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 
 ! ---- Parameters for Initial Water Surface Profile-----
 !
 	CALL CG_IRIC_READ_INTEGER_F('i_flow', i_flow, ier)
 !
-!			i_flow=0 ‰Šú…–ÊŒ`‚Í’¼ü(ˆê’èŒù”z)
-!			i_flow=1 ‰Šú…–ÊŒ`‚ÍÜü(‚PÜ“_‚Æ‚Q’¼ü) !i@‚Í‚ñ—”ŒvZƒ‚ƒfƒ‹‚Å‚Íg—p•s‰Â
-!			i_flow=2 ‰Šú…–ÊŒ`‚Í“™—¬ŒvZ             !i@‚Í‚ñ—”ŒvZƒ‚ƒfƒ‹‚Å‚Íg—p•s‰Â
-!			i_flow=3 ‰Šú…–ÊŒ`‚Í•s“™—¬ŒvZ           !i@‚Í‚ñ—”ŒvZƒ‚ƒfƒ‹‚Å‚Íg—p•s‰Â
-!			i_flow=4 ‰Šú…–ÊŒ`‚Í0
+!			i_flow=0 åˆæœŸæ°´é¢å½¢ã¯ç›´ç·š(ä¸€å®šå‹¾é…)
+!			i_flow=1 åˆæœŸæ°´é¢å½¢ã¯æŠ˜ç·š(ï¼‘æŠ˜ç‚¹ã¨ï¼’ç›´ç·š) !iã€€ã¯ã‚“æ¿«è¨ˆç®—ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ç”¨ä¸å¯
+!			i_flow=2 åˆæœŸæ°´é¢å½¢ã¯ç­‰æµè¨ˆç®—             !iã€€ã¯ã‚“æ¿«è¨ˆç®—ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ç”¨ä¸å¯
+!			i_flow=3 åˆæœŸæ°´é¢å½¢ã¯ä¸ç­‰æµè¨ˆç®—           !iã€€ã¯ã‚“æ¿«è¨ˆç®—ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ç”¨ä¸å¯
+!			i_flow=4 åˆæœŸæ°´é¢å½¢ã¯0
 
 	CALL CG_IRIC_READ_REAL_F('h_slope', h_slope, ier)
 !
-!			ã‹Li_flow=0‚Ì‚Æ‚«‚Ì‰Šú…–ÊŒù”z
+!			ä¸Šè¨˜i_flow=0ã®ã¨ãã®åˆæœŸæ°´é¢å‹¾é…
 !
 !i			CALL CG_IRIC_READ_REALSINGLE_F('x_bk', x_bk, ier)
 
-	x_bk = 5  !i@‚Í‚ñ—”ŒvZƒ‚ƒfƒ‹‚Å‚Íg—p•s‰Â@ƒ_ƒ~[B
+	x_bk = 5  !iã€€ã¯ã‚“æ¿«è¨ˆç®—ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ç”¨ä¸å¯ã€€ãƒ€ãƒŸãƒ¼ã€‚
 !
-!			ã‹Li_flow=1‚Ì‚Æ‚«‚ÌŒù”z•Ï‰»“_‚Ì‰º—¬‚©‚ç‚Ì‹——£ x_bk
+!			ä¸Šè¨˜i_flow=1ã®ã¨ãã®å‹¾é…å¤‰åŒ–ç‚¹ã®ä¸‹æµã‹ã‚‰ã®è·é›¢ x_bk
 !
 !		 CALL CG_IRIC_READ_REALSINGLE_F('h_slope_1', h_slope_1, ier)
 !		CALL CG_IRIC_READ_REALSINGLE_F('h_slope_2', h_slope_2, ier)
 
-	h_slope_1 =0.001  !i@‚Í‚ñ—”ŒvZƒ‚ƒfƒ‹‚Å‚Íg—p•s‰Â@ƒ_ƒ~[B
-	h_slope_2 =0.001  !i@‚Í‚ñ—”ŒvZƒ‚ƒfƒ‹‚Å‚Íg—p•s‰Â@ƒ_ƒ~[B
+	h_slope_1 =0.001  !iã€€ã¯ã‚“æ¿«è¨ˆç®—ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ç”¨ä¸å¯ã€€ãƒ€ãƒŸãƒ¼ã€‚
+	h_slope_2 =0.001  !iã€€ã¯ã‚“æ¿«è¨ˆç®—ãƒ¢ãƒ‡ãƒ«ã§ã¯ä½¿ç”¨ä¸å¯ã€€ãƒ€ãƒŸãƒ¼ã€‚
 
 !
-!			ã‹Li_flow=1‚Ì‚Æ‚«‚Ì‰Šú…–ÊŒù”z(‰º—¬‘¤)h_slope_1
-!			ã‹Li_flow=1‚Ì‚Æ‚«‚Ì‰Šú…–ÊŒù”z(ã—¬‘¤)h_slope_2
+!			ä¸Šè¨˜i_flow=1ã®ã¨ãã®åˆæœŸæ°´é¢å‹¾é…(ä¸‹æµå´)h_slope_1
+!			ä¸Šè¨˜i_flow=1ã®ã¨ãã®åˆæœŸæ°´é¢å‹¾é…(ä¸Šæµå´)h_slope_2
 
 !
-!	‘¤•û©—R—¬oƒpƒ‰ƒ[ƒ^
+!	å´æ–¹è‡ªç”±æµå‡ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 !
 ! ----- Parameters for innundation with some inlet ----- !
 !
 
-	i_in=1      !i‚Í‚ñ—”ŒvZ‚¾‚¯‚ğs‚¤ƒ‚ƒfƒ‹B
+	i_in=1      !iã¯ã‚“æ¿«è¨ˆç®—ã ã‘ã‚’è¡Œã†ãƒ¢ãƒ‡ãƒ«ã€‚
 
 	if(i_in == 1) then
 		j_upv = 1
@@ -1579,8 +1579,8 @@ program nays2d_flood_parallel
 !
 !			CALL CG_IRIC_READ_INTEGER_F('j_drg', j_drg, ier)
 !
-!			j_drg = 0 .... ‘e“x‚Í‰Í°Ş—¿(diam)‚©‚ç©“®“I‚ÉŒvZ‚³‚ê‚é
-!			j_drg = 1 .... ‘e“x‚Í—^‚¦‚ç‚ê‚éiˆÈ‰ºA‹ï‘Ì“I‘e“x‚Ì’l)
+!			j_drg = 0 .... ç²—åº¦ã¯æ²³åºŠææ–™(diam)ã‹ã‚‰è‡ªå‹•çš„ã«è¨ˆç®—ã•ã‚Œã‚‹
+!			j_drg = 1 .... ç²—åº¦ã¯ä¸ãˆã‚‰ã‚Œã‚‹ï¼ˆä»¥ä¸‹ã€å…·ä½“çš„ç²—åº¦ã®å€¤)
 
 	j_drg = 1
 
@@ -1608,7 +1608,7 @@ program nays2d_flood_parallel
      CALL CG_IRIC_READ_STRING_F('tmp_readfile', tmp_file_i, ier)
      CALL CG_IRIC_READ_STRING_F('tmp_pass', tmp_pass, ier)
      
-     !b’èˆ—
+     !æš«å®šå‡¦ç†
      i_re_flag_o = 0
      i_re_flag_i = 0
      n_rest = 1
@@ -1671,7 +1671,7 @@ program nays2d_flood_parallel
 		allocate( t_qc_dis(0:nqtcell), q_cell_dis(0:nqtcell,n_q_cell)	&
 				, ni_dis_cell(0:n_q_cell) )
 		
-		q_tmp_dis = 0.d0	! ”z—ñ0‚Í—¬“ü‚ª‚È‚¢‚Æ‚«—p
+		q_tmp_dis = 0.d0	! é…åˆ—0ã¯æµå…¥ãŒãªã„ã¨ãç”¨
 		ni_dis_cell = 1.d0
 		
 		CALL CG_IRIC_READ_FUNCTIONALWITHNAME_F('t_qcells','time',xqtmp,ier)
@@ -1713,7 +1713,7 @@ program nays2d_flood_parallel
 !
 
 !i3------------------------------------------------------------
-!i3 ‹«ŠEğŒİ’è‹@”\‚Ö‚Ì‘Î‰
+!i3 å¢ƒç•Œæ¡ä»¶è¨­å®šæ©Ÿèƒ½ã¸ã®å¯¾å¿œ
 !i3
 !
 	j_in = 0
@@ -1856,7 +1856,7 @@ program nays2d_flood_parallel
 !				cd_veg(i,j) = veg_lamb_3 * c_tree * 0.5
 !			end if
 
-			cd_veg(i,j) = 0. 		!i@‚Í‚ñ—”ŒvZ‚Å÷–Ø‚È‚µ 
+			cd_veg(i,j) = 0. 		!iã€€ã¯ã‚“æ¿«è¨ˆç®—ã§æ¨¹æœ¨ãªã— 
 
             
 		end do
@@ -1876,7 +1876,7 @@ program nays2d_flood_parallel
 		end do
 	end do
 	
-		! --- —¬‘¬’è‹`“_‚Ì\‘¢•¨”»’è ---
+		! --- æµé€Ÿå®šç¾©ç‚¹ã®æ§‹é€ ç‰©åˆ¤å®š ---
 
 	do j=1,ny
 		do i=0,nx
@@ -2071,7 +2071,7 @@ program nays2d_flood_parallel
 		DEALLOCATE(ytmp, STAT = ier)
 	end if
 
-!h160104 Xrain‘Î‰
+!h160104 Xrainå¯¾å¿œ
 	if( j_rain==3 ) then
 		CALL CG_IRIC_READ_GRID_FUNCTIONALTIMESIZE_F('Xrain',tmpint,ier)
 		if(ier .ne. 0) then
@@ -2107,7 +2107,7 @@ program nays2d_flood_parallel
 	
 	i_bomb = 0
 
-! ---- ‰Í°‘e“x‚ÉŠÖ‚·‚éİ’è -----
+! ---- æ²³åºŠç²—åº¦ã«é–¢ã™ã‚‹è¨­å®š -----
 
 	do j=1,ny
 		do i=1,nx
@@ -2144,12 +2144,12 @@ program nays2d_flood_parallel
 		sn_vp(i,ny) = snmm(i,ny)
 	end do
 
-!inoue ----	Œš•¨‘jŠQ—¦ hamaki ver ----
+!inoue ----	å»ºç‰©é˜»å®³ç‡ hamaki ver ----
 	do j=1,ny
 		do i=1,nx
 			share(i,j) = sh4(i,j)
 			gam_v(i,j) = 1.0d0 - share(i,j)
-			if(j_cip == 2 .and. gam_v(i,j) /= 1.0d0) then	!h150113 Œš•¨‘jŠQ—¦‚ ‚è‚ÅCIP‚È‚çƒGƒ‰[ƒƒbƒZ[ƒW
+			if(j_cip == 2 .and. gam_v(i,j) /= 1.0d0) then	!h150113 å»ºç‰©é˜»å®³ç‡ã‚ã‚Šã§CIPãªã‚‰ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 				write(*,*) 'When considering buildings occupy, please select the upwind scheme.'
 				stop
 			end if
@@ -2172,8 +2172,8 @@ program nays2d_flood_parallel
 	
 	do j=1,ny
 		do i=1,nx-1
-			gam_e_up(i,j) = max(gam_e(i,j),gam_e(i+1,j))	!gam_e‚ÍÅ‘å’l
-			gam_v_up(i,j) = (gam_v(i,j)+gam_v(i+1,j))*.5d0	!gam_v‚Í•½‹Ï’l
+			gam_e_up(i,j) = max(gam_e(i,j),gam_e(i+1,j))	!gam_eã¯æœ€å¤§å€¤
+			gam_v_up(i,j) = (gam_v(i,j)+gam_v(i+1,j))*.5d0	!gam_vã¯å¹³å‡å€¤
 		end do
 	end do
 	
@@ -2186,8 +2186,8 @@ program nays2d_flood_parallel
 
 	do j=1,ny-1
 		do i=1,nx
-			gam_e_vp(i,j) = max(gam_e(i,j),gam_e(i,j+1))	!gam_e‚ÍÅ‘å’l
-			gam_v_vp(i,j) = (gam_v(i,j)+gam_v(i,j+1))*.5d0	!gam_v‚Í•½‹Ï’l
+			gam_e_vp(i,j) = max(gam_e(i,j),gam_e(i,j+1))	!gam_eã¯æœ€å¤§å€¤
+			gam_v_vp(i,j) = (gam_v(i,j)+gam_v(i,j+1))*.5d0	!gam_vã¯å¹³å‡å€¤
 		end do
 	end do
 	
@@ -2261,7 +2261,7 @@ program nays2d_flood_parallel
 	call bound_u(yun,ijobst_u)
 	call bound_v(yvn,ijobst_v)
 
-!   “™—¬ŒvZ‚É‚æ‚é‹«ŠE…ˆÊŒn—ñ‚ÌŒvZ
+!   ç­‰æµè¨ˆç®—ã«ã‚ˆã‚‹å¢ƒç•Œæ°´ä½æ™‚ç³»åˆ—ã®è¨ˆç®—
 
 	call hqtcal_inn(nq,h_down)
 
@@ -2293,7 +2293,7 @@ program nays2d_flood_parallel
 		i_tmp_count = is+1
 		!
 		
-		!Python‚©‚ç‚Ì˜A‘±ŒvZ‚Ìê‡
+		!Pythonã‹ã‚‰ã®é€£ç¶šè¨ˆç®—ã®å ´åˆ
 		n_rest = 1
 		opt_tmp(0) = time + opt_tmp(0) 
 		
@@ -2441,9 +2441,9 @@ program nays2d_flood_parallel
 		end if
 
 		rain_t=rain_t*0.001/3600.
-		rain_t2=rain_t		!h160105 ‘S—Ìˆæˆê’è‚Ì‰J‚Ìê‡
+		rain_t2=rain_t		!h160105 å…¨é ˜åŸŸä¸€å®šã®é›¨ã®å ´åˆ
 
-	else if(j_rain==3) then	!h160105 Xrain‘Î‰
+	else if(j_rain==3) then	!h160105 Xrainå¯¾å¿œ
 		if(time<=0.) then
 			tmpint=1
 		else if(time>t_rain(nr)) then
@@ -2458,7 +2458,7 @@ program nays2d_flood_parallel
 		
 		CALL CG_IRIC_READ_GRID_FUNCTIONAL_REAL_CELL_F('Xrain',tmpint,rain_t2,ier)
 		rain_t2=rain_t2*0.001/3600.
-		rain_t2=rain_t2*0.1		!hƒXƒP[ƒ‹ƒtƒ@ƒNƒ^[
+		rain_t2=rain_t2*0.1		!hã‚¹ã‚±ãƒ¼ãƒ«ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼
 
 	end if
 
@@ -2507,7 +2507,7 @@ program nays2d_flood_parallel
 		hnx=h_down
 	end if
 
-! ----- …ˆÊE—¬—Ê‚Ì‹«ŠEğŒ -----
+! ----- æ°´ä½ãƒ»æµé‡ã®å¢ƒç•Œæ¡ä»¶ -----
 
 	call upstream_inn()
 
@@ -2518,12 +2518,12 @@ program nays2d_flood_parallel
 		call downstream(hnx)
 	end if
 
-		! ƒ†[ƒU‚ªGUIã‚Å "STOP" ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚ÄÀs‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½‚©Šm”F
+		! ãƒ¦ãƒ¼ã‚¶ãŒGUIä¸Šã§ "STOP" ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å®Ÿè¡Œã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã‹ç¢ºèª
 		CALL IRIC_CHECK_CANCEL_F(istatus)
 		if(istatus == 1) then
 			write(*,*) "Solver is stopped because the STOP button was clicked."
 			
-			call system_clock(cal_t2, t_rate, t_max)	!h160105 ŒvZI—¹
+			call system_clock(cal_t2, t_rate, t_max)	!h160105 è¨ˆç®—çµ‚äº†æ™‚æ™‚åˆ»
 			if ( cal_t2 < cal_t1 ) then
 				t_diff = (t_max - cal_t1) + cal_t2 + 1
 			else
@@ -2538,9 +2538,9 @@ program nays2d_flood_parallel
 !$omp end single
 
 
-! ------------ ŒvZŒ‹‰Ê‚ÌƒAƒEƒgƒvƒbƒg -------------
+! ------------ è¨ˆç®—çµæœã®ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆ -------------
 
-!	if ( icount == 1.or.mod(icount-1,kmod) == 0 ) then	!h time=0‚ào—Í
+!	if ( icount == 1.or.mod(icount-1,kmod) == 0 ) then	!h time=0ã‚‚å‡ºåŠ›
 	if( icount==0 .or. mod(icount,kmod)==0 ) then
 !
 		if(iofrg==0) then
@@ -2566,12 +2566,12 @@ program nays2d_flood_parallel
 			if( time>=t_out_start ) then
 				qptemp = qp
 
-				! gui‚ªcgnsƒtƒ@ƒCƒ‹‚ğ“Ç’†‚©”Û‚©‚ğ”»’è
+				! guiãŒcgnsãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­è¾¼ä¸­ã‹å¦ã‹ã‚’åˆ¤å®š
 				do
 					call iric_check_lock_f(condFile, istatus)
 					if(istatus == 1) then
 						call sleep(1)
-					elseif(istatus == 0)then  !“Ç’†‚Å‚È‚¯‚ê‚Îdoƒ‹[ƒv‚ğ”²‚¯‚é
+					elseif(istatus == 0)then  !èª­è¾¼ä¸­ã§ãªã‘ã‚Œã°doãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 						call iric_write_sol_start_f(condFile, ier)   
 						exit
 					end if
@@ -2690,18 +2690,18 @@ program nays2d_flood_parallel
 	call newgrd_v
 
 	if( j_cip==1 ) then
-!ino		call upwind2d_u(yun,gux,guy)
+	 call upwind2d_u(yun,gux,guy)
 	else
-!ino		call dcip2d_u(yun,gux,guy)
+	 call dcip2d_u(yun,gux,guy)
 	end if
 
 	call dryck_u(yun,hs,gux,guy)
 	call bound_u(yun,ijobst_u)
 
 	if( j_cip==1 ) then
-!ino		call upwind2d_v(yvn,gvx,gvy)
+	 call upwind2d_v(yvn,gvx,gvy)
 	else
-!ino		call dcip2d_v(yvn,gvx,gvy)
+	 call dcip2d_v(yvn,gvx,gvy)
 	end if
 
 	call dryck_v(yvn,hs,gvx,gvy)
@@ -2760,7 +2760,7 @@ program nays2d_flood_parallel
 
 	write(*,*) "Finish", ier
 
-	call system_clock(cal_t2, t_rate, t_max)	!h160105 ŒvZI—¹
+	call system_clock(cal_t2, t_rate, t_max)	!h160105 è¨ˆç®—çµ‚äº†æ™‚æ™‚åˆ»
 	if ( cal_t2 < cal_t1 ) then
 		t_diff = (t_max - cal_t1) + cal_t2 + 1
 	else
@@ -2783,37 +2783,37 @@ subroutine culvert
 
 	if(bc_num>0) then
 L1:	do i=1,bc_num
-			q_bc=0.0d0  !140602”O‚Ì‚½‚ßƒ[ƒƒNƒŠƒA
-			if(bc_inout(i)==1) cycle L1 !oŒûƒZƒ‹‚Ìê‡
+			q_bc=0.0d0  !140602å¿µã®ãŸã‚ã‚¼ãƒ­ã‚¯ãƒªã‚¢
+			if(bc_inout(i)==1) cycle L1 !å‡ºå£ã‚»ãƒ«ã®å ´åˆ
 L2:		do j=1,bc_num
 				if(i==j) cycle L2
-				if(bc_inout(j)==0) cycle L2 !“üŒûƒZƒ‹‚Ìê‡
-				if(bc_couple_num(i)/=bc_couple_num(j)) cycle L2 !BC”Ô†‚Ìˆê’v‚ÌŠm”F
+				if(bc_inout(j)==0) cycle L2 !å…¥å£ã‚»ãƒ«ã®å ´åˆ
+				if(bc_couple_num(i)/=bc_couple_num(j)) cycle L2 !BCç•ªå·ã®ä¸€è‡´ã®ç¢ºèª
 
-				!140602bc_wlin=h(bc_indx(i,1,1),bc_indx(i,2,1))        !“à…ˆÊ(“üŒû‘¤…ˆÊ)
-				!140602bc_wlot=h(bc_indx(j,1,1),bc_indx(j,2,1))        !ŠO…ˆÊ(oŒû‘¤…ˆÊ)
-				bc_wlin=hn(bc_indx(i,1,1),bc_indx(i,2,1))        !“à…ˆÊ(“üŒû‘¤…ˆÊ)
-				bc_wlot=hn(bc_indx(j,1,1),bc_indx(j,2,1))        !ŠO…ˆÊ(oŒû‘¤…ˆÊ)
+				!140602bc_wlin=h(bc_indx(i,1,1),bc_indx(i,2,1))        !å†…æ°´ä½(å…¥å£å´æ°´ä½)
+				!140602bc_wlot=h(bc_indx(j,1,1),bc_indx(j,2,1))        !å¤–æ°´ä½(å‡ºå£å´æ°´ä½)
+				bc_wlin=hn(bc_indx(i,1,1),bc_indx(i,2,1))        !å†…æ°´ä½(å…¥å£å´æ°´ä½)
+				bc_wlot=hn(bc_indx(j,1,1),bc_indx(j,2,1))        !å¤–æ°´ä½(å‡ºå£å´æ°´ä½)
 
 				if(bc_wlin>bc_wlot) then
-					!ƒ{ƒbƒNƒXƒJƒ‹ƒo[ƒg“üŒû’n“_‚Ì…ˆÊ‚ª•~‚ˆÈ‰º‚Ìê‡‰½‚à‚µ‚È‚¢
+					!ãƒœãƒƒã‚¯ã‚¹ã‚«ãƒ«ãƒãƒ¼ãƒˆå…¥å£åœ°ç‚¹ã®æ°´ä½ãŒæ•·é«˜ä»¥ä¸‹ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(bc_wlin<=bc_base(i)) cycle L1
-					!ƒ{ƒbƒNƒXƒJƒ‹ƒo[ƒg“üŒû’n“_‚Ì…[‚ªhminˆÈ‰º(‰‰ZŒë·l—¶)‚Ìê‡‰½‚à‚µ‚È‚¢
+					!ãƒœãƒƒã‚¯ã‚¹ã‚«ãƒ«ãƒãƒ¼ãƒˆå…¥å£åœ°ç‚¹ã®æ°´æ·±ãŒhminä»¥ä¸‹(æ¼”ç®—èª¤å·®è€ƒæ…®)ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(bc_wlin<=eta(bc_indx(i,1,1),bc_indx(i,2,1))+hmin+1.0e-6) cycle L1
 					h1=bc_wlin-bc_base(i)
 					h2=bc_wlot-bc_base(i)
-					!ƒJƒ‹ƒo[ƒg•~‚‚ğ’´‚¦‚éƒ{ƒŠƒ…[ƒ€•ªˆÚ“®‰Â”\
+					!ã‚«ãƒ«ãƒãƒ¼ãƒˆæ•·é«˜ã‚’è¶…ãˆã‚‹ãƒœãƒªãƒ¥ãƒ¼ãƒ åˆ†ç§»å‹•å¯èƒ½
 					qlim=(dmin1(bc_wlin-eta(bc_indx(i,1,1),bc_indx(i,2,1))-hmin,bc_wlin-bc_base(i))) &
 						*area(bc_indx(i,1,1),bc_indx(i,2,1))/dt
 					muki=1
 				else
-					!ƒ{ƒbƒNƒXƒJƒ‹ƒo[ƒgoŒû’n“_‚Ì…ˆÊ‚ª•~‚ˆÈ‰º‚Ìê‡‰½‚à‚µ‚È‚¢
+					!ãƒœãƒƒã‚¯ã‚¹ã‚«ãƒ«ãƒãƒ¼ãƒˆå‡ºå£åœ°ç‚¹ã®æ°´ä½ãŒæ•·é«˜ä»¥ä¸‹ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(bc_wlot<=bc_base(i)) cycle L1
-					!ƒ{ƒbƒNƒXƒJƒ‹ƒo[ƒgoŒû’n“_‚Ì…[‚ªhminˆÈ‰º(‰‰ZŒë·l—¶)‚Ìê‡‰½‚à‚µ‚È‚¢
+					!ãƒœãƒƒã‚¯ã‚¹ã‚«ãƒ«ãƒãƒ¼ãƒˆå‡ºå£åœ°ç‚¹ã®æ°´æ·±ãŒhminä»¥ä¸‹(æ¼”ç®—èª¤å·®è€ƒæ…®)ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(bc_wlot<=eta(bc_indx(j,1,1),bc_indx(j,2,1))+hmin+1.0e-6) cycle L1
 					h1=bc_wlot-bc_base(i)
 					h2=bc_wlin-bc_base(i)
-					!ƒJƒ‹ƒo[ƒg•~‚‚ğ’´‚¦‚éƒ{ƒŠƒ…[ƒ€•ªˆÚ“®‰Â”\
+					!ã‚«ãƒ«ãƒãƒ¼ãƒˆæ•·é«˜ã‚’è¶…ãˆã‚‹ãƒœãƒªãƒ¥ãƒ¼ãƒ åˆ†ç§»å‹•å¯èƒ½
 					qlim=(dmin1(bc_wlot-eta(bc_indx(j,1,1),bc_indx(j,2,1))-hmin,bc_wlot-bc_base(i))) &
 						*area(bc_indx(j,1,1),bc_indx(j,2,1))/dt
 					muki=-1
@@ -2824,7 +2824,7 @@ L2:		do j=1,bc_num
 				end if
 				if(h2<0.0d0) h2=0.0d0
 
-				!ƒJƒ‹ƒo[ƒgŒö®
+				!ã‚«ãƒ«ãƒãƒ¼ãƒˆå…¬å¼
 				if(h2>=bc_height(i)) then
 					q_bc=bc_c1(i)*bc_width(i)*bc_height(i)*sqrt(g*2.0d0*(h1-h2))*bc_ren(i)
 				elseif(bc_c2_yesno(i)==1.and.h1>=1.5d0*bc_height(i)) then
@@ -2834,23 +2834,23 @@ L2:		do j=1,bc_num
 					q_bc=bc_c3(i)*bc_width(i)*h2*sqrt(g*2.0d0*(h1-h2))*bc_ren(i)
 				end if
 
-				!ˆÚ“®‰Â”\—Ê‚Å§Œä
+				!ç§»å‹•å¯èƒ½é‡ã§åˆ¶å¾¡
 				if(qlim<q_bc) q_bc=qlim
 							
 				if(muki==1) then
-					!“üŒûƒZƒ‹(—¬o)
+					!å…¥å£ã‚»ãƒ«(æµå‡º)
 					q_swap(bc_indx(i,1,1),bc_indx(i,2,1))=q_swap(bc_indx(i,1,1),bc_indx(i,2,1))-q_bc
-					!oŒûƒZƒ‹(—¬“ü)
+					!å‡ºå£ã‚»ãƒ«(æµå…¥)
 					q_swap(bc_indx(j,1,1),bc_indx(j,2,1))=q_swap(bc_indx(j,1,1),bc_indx(j,2,1))+q_bc
-					!o—Í—p140602
+					!å‡ºåŠ›ç”¨140602
 					bc_qswap(i)=-q_bc
 					bc_qswap(j)=q_bc
 				else
-					!oŒûƒZƒ‹(—¬o)
+					!å‡ºå£ã‚»ãƒ«(æµå‡º)
 					q_swap(bc_indx(j,1,1),bc_indx(j,2,1))=q_swap(bc_indx(j,1,1),bc_indx(j,2,1))-q_bc
-					!“üŒûƒZƒ‹(—¬“ü)
+					!å…¥å£ã‚»ãƒ«(æµå…¥)
 					q_swap(bc_indx(i,1,1),bc_indx(i,2,1))=q_swap(bc_indx(i,1,1),bc_indx(i,2,1))+q_bc
-					!o—Í—p140602
+					!å‡ºåŠ›ç”¨140602
 					bc_qswap(i)=q_bc
 					bc_qswap(j)=-q_bc
 				end if
@@ -2869,12 +2869,12 @@ subroutine gate
 
 	if(gt_num>0) then
 L1:	do i=1,gt_num
-			q_gt=0.0d0  !140602”O‚Ì‚½‚ßƒ[ƒƒNƒŠƒA
-			if(gt_inout(i)==1) cycle L1 !oŒûƒZƒ‹‚Ìê‡
+			q_gt=0.0d0  !140602å¿µã®ãŸã‚ã‚¼ãƒ­ã‚¯ãƒªã‚¢
+			if(gt_inout(i)==1) cycle L1 !å‡ºå£ã‚»ãƒ«ã®å ´åˆ
 
-			gt_flg=0    !”ó–å‚ªŠJ‚Ìê‡
-			if(gt_method(i)==1) then    !”ó–åŠJ•Âó‘Ô‚ğƒf[ƒ^‚Åİ’è‚·‚éê‡
-				!gt_state‚ÍŠJ=0A•Â=1
+			gt_flg=0    !æ¨‹é–€ãŒé–‹ã®å ´åˆ
+			if(gt_method(i)==1) then    !æ¨‹é–€é–‹é–‰çŠ¶æ…‹ã‚’ãƒ‡ãƒ¼ã‚¿ã§è¨­å®šã™ã‚‹å ´åˆ
+				!gt_stateã¯é–‹=0ã€é–‰=1
 				if(time<=0.0d0) then
 					gt_flg=gt_state(i,1)
 				else if(time>=gt_time(i,gt_size(i))) then
@@ -2886,18 +2886,18 @@ L1:	do i=1,gt_num
 				end if
 			end if
 
-			if(gt_flg==0) then  !”ó–å‚ªŠJ‚Ìê‡
+			if(gt_flg==0) then  !æ¨‹é–€ãŒé–‹ã®å ´åˆ
 L2:			do j=1,gt_num
 					if(i==j) cycle L2
-					if(gt_inout(j)==0) cycle L2 !“üŒûƒZƒ‹‚Ìê‡
-					if(gt_couple_num(i)/=gt_couple_num(j)) cycle L2 !Gate”Ô†‚Ìˆê’v‚ÌŠm”F
+					if(gt_inout(j)==0) cycle L2 !å…¥å£ã‚»ãƒ«ã®å ´åˆ
+					if(gt_couple_num(i)/=gt_couple_num(j)) cycle L2 !Gateç•ªå·ã®ä¸€è‡´ã®ç¢ºèª
 
-					!140602gt_wlin=h(gt_indx(i,1,1),gt_indx(i,2,1))        !“à…ˆÊ(“üŒû‘¤…ˆÊ)
-					gt_wlin=hn(gt_indx(i,1,1),gt_indx(i,2,1))        !“à…ˆÊ(“üŒû‘¤…ˆÊ)
-					if(gt_outwl(j)==0) then                         !ŠO…ˆÊ‚Ìw’è‚ª‚È‚¢ê‡
-						!140602gt_wlot=h(gt_indx(j,1,1),gt_indx(j,2,1))    !ŠO…ˆÊ
-						gt_wlot=hn(gt_indx(j,1,1),gt_indx(j,2,1))    !ŠO…ˆÊ
-					else                                            !ŠO…ˆÊ‚Ìw’è‚ª‚ ‚éê‡
+					!140602gt_wlin=h(gt_indx(i,1,1),gt_indx(i,2,1))        !å†…æ°´ä½(å…¥å£å´æ°´ä½)
+					gt_wlin=hn(gt_indx(i,1,1),gt_indx(i,2,1))        !å†…æ°´ä½(å…¥å£å´æ°´ä½)
+					if(gt_outwl(j)==0) then                         !å¤–æ°´ä½ã®æŒ‡å®šãŒãªã„å ´åˆ
+						!140602gt_wlot=h(gt_indx(j,1,1),gt_indx(j,2,1))    !å¤–æ°´ä½
+						gt_wlot=hn(gt_indx(j,1,1),gt_indx(j,2,1))    !å¤–æ°´ä½
+					else                                            !å¤–æ°´ä½ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 						if(time<=0.0d0) then
 							gt_wlot=gt_wl(j,1)
 						else if(time>=gt_time2(j,gt_size2(j))) then
@@ -2912,11 +2912,11 @@ L2:			do j=1,gt_num
 						end if
 					end if
 
-					!ŠJ•Â©“®‚Å“à…ˆÊ…ŠO…ˆÊ‚Ìê‡‰½‚à‚µ‚È‚¢
+					!é–‹é–‰è‡ªå‹•ã§å†…æ°´ä½â‰¦å¤–æ°´ä½ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(gt_method(i)==0.and.gt_wlin<=gt_wlot) cycle L1
-					!ŠJ•Â©“®‚Å…[‚ªhminˆÈ‰º(‰‰ZŒë·l—¶)‚Ìê‡‰½‚à‚µ‚È‚¢
+					!é–‹é–‰è‡ªå‹•ã§æ°´æ·±ãŒhminä»¥ä¸‹(æ¼”ç®—èª¤å·®è€ƒæ…®)ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(gt_method(i)==0.and.gt_wlin<=eta(gt_indx(i,1,1),gt_indx(i,2,1))+hmin+1.0e-6) cycle L1
-					!ŠJ•Âè“®‚Å…[‚ªhminˆÈ‰º(‰‰ZŒë·l—¶)‚Ìê‡‰½‚à‚µ‚È‚¢
+					!é–‹é–‰æ‰‹å‹•ã§æ°´æ·±ãŒhminä»¥ä¸‹(æ¼”ç®—èª¤å·®è€ƒæ…®)ã®å ´åˆä½•ã‚‚ã—ãªã„
 					if(gt_method(i)==1) then
 						if(gt_wlin>gt_wlot) then
 							if(gt_wlin-eta(gt_indx(i,1,1),gt_indx(i,2,1))<=hmin+1.0e-6) cycle L1
@@ -2926,20 +2926,20 @@ L2:			do j=1,gt_num
 					end if
 
 					if(gt_wlin>gt_wlot) then
-						!”ó–å“üŒû/oŒû’n“_‚Ì…ˆÊ‚ª•~‚ˆÈ‰º‚Ìê‡‰½‚à‚µ‚È‚¢
+						!æ¨‹é–€å…¥å£/å‡ºå£åœ°ç‚¹ã®æ°´ä½ãŒæ•·é«˜ä»¥ä¸‹ã®å ´åˆä½•ã‚‚ã—ãªã„
 						if(gt_wlin<=gt_base(i)) cycle L1
 						h1=gt_wlin-gt_base(i)
 						h2=gt_wlot-gt_base(i)
-						!”ó–å•~‚‚ğ’´‚¦‚éƒ{ƒŠƒ…[ƒ€•ªˆÚ“®‰Â”\
+						!æ¨‹é–€æ•·é«˜ã‚’è¶…ãˆã‚‹ãƒœãƒªãƒ¥ãƒ¼ãƒ åˆ†ç§»å‹•å¯èƒ½
 						qlim=(dmin1(gt_wlin-eta(gt_indx(i,1,1),gt_indx(i,2,1))-hmin,gt_wlin-gt_base(i))) &
 							*area(gt_indx(i,1,1),gt_indx(i,2,1))/dt
 						muki=-1
 					else
-						!”ó–å“üŒû/oŒû’n“_‚Ì…ˆÊ‚ª•~‚ˆÈ‰º‚Ìê‡‰½‚à‚µ‚È‚¢
+						!æ¨‹é–€å…¥å£/å‡ºå£åœ°ç‚¹ã®æ°´ä½ãŒæ•·é«˜ä»¥ä¸‹ã®å ´åˆä½•ã‚‚ã—ãªã„
 						if(gt_wlot<=gt_base(i)) cycle L1
 						h1=gt_wlot-gt_base(i)
 						h2=gt_wlin-gt_base(i)
-						!”ó–å•~‚‚ğ’´‚¦‚éƒ{ƒŠƒ…[ƒ€•ªˆÚ“®‰Â”\
+						!æ¨‹é–€æ•·é«˜ã‚’è¶…ãˆã‚‹ãƒœãƒªãƒ¥ãƒ¼ãƒ åˆ†ç§»å‹•å¯èƒ½
 						qlim=(dmin1(gt_wlot-eta(gt_indx(j,1,1),gt_indx(j,2,1))-hmin,gt_wlot-gt_base(i))) &
 							*area(gt_indx(j,1,1),gt_indx(j,2,1))/dt
 						muki=1
@@ -2950,7 +2950,7 @@ L2:			do j=1,gt_num
 					end if
 					if(h2<0.0d0) h2=0.0d0
 
-					!”ó–åŒö®
+					!æ¨‹é–€å…¬å¼
 					if(h2>=gt_height(i)) then
 						q_gt=gt_c1(i)*gt_width(i)*gt_height(i)*sqrt(g*2.0d0*(h1-h2))*gt_ren(i)
 					elseif(gt_c2_yesno(i)==1.and.h1>=1.5d0*gt_height(i)) then
@@ -2960,20 +2960,20 @@ L2:			do j=1,gt_num
 						q_gt=gt_c3(i)*gt_width(i)*h2*sqrt(g*2.0d0*(h1-h2))*gt_ren(i)
 					end if
 
-					!ˆÚ“®‰Â”\—Ê‚Å§Œä
+					!ç§»å‹•å¯èƒ½é‡ã§åˆ¶å¾¡
 					if(qlim<q_gt) q_gt=qlim
 					if(muki==1) then
-						q_swap(gt_indx(i,1,1),gt_indx(i,2,1))=q_swap(gt_indx(i,1,1),gt_indx(i,2,1))+q_gt	!“üŒûƒZƒ‹(—¬“ü)
+						q_swap(gt_indx(i,1,1),gt_indx(i,2,1))=q_swap(gt_indx(i,1,1),gt_indx(i,2,1))+q_gt	!å…¥å£ã‚»ãƒ«(æµå…¥)
 						if(gt_outwl(j)==0) q_swap(gt_indx(j,1,1),gt_indx(j,2,1))= &
-							q_swap(gt_indx(j,1,1),gt_indx(j,2,1))-q_gt	!oŒûƒZƒ‹(—¬o)
-						!o—Í—p140602
+							q_swap(gt_indx(j,1,1),gt_indx(j,2,1))-q_gt	!å‡ºå£ã‚»ãƒ«(æµå‡º)
+						!å‡ºåŠ›ç”¨140602
 						gt_qswap(i)=q_gt
 						if(gt_outwl(j)==0) gt_qswap(j)=-q_gt
 					else
-						q_swap(gt_indx(i,1,1),gt_indx(i,2,1))=q_swap(gt_indx(i,1,1),gt_indx(i,2,1))-q_gt	!“üŒûƒZƒ‹(—¬o)
+						q_swap(gt_indx(i,1,1),gt_indx(i,2,1))=q_swap(gt_indx(i,1,1),gt_indx(i,2,1))-q_gt	!å…¥å£ã‚»ãƒ«(æµå‡º)
 						if(gt_outwl(j)==0) q_swap(gt_indx(j,1,1),gt_indx(j,2,1))= &
-							q_swap(gt_indx(j,1,1),gt_indx(j,2,1))+q_gt	!oŒûƒZƒ‹(—¬“ü)
-						!o—Í—p140602
+							q_swap(gt_indx(j,1,1),gt_indx(j,2,1))+q_gt	!å‡ºå£ã‚»ãƒ«(æµå…¥)
+						!å‡ºåŠ›ç”¨140602
 						gt_qswap(i)=-q_gt
 						if(gt_outwl(j)==0) gt_qswap(j)=q_gt
 					end if
@@ -2997,7 +2997,7 @@ subroutine pump
 L1:	do i=1,p_num
             q_pin(i)=0.0d0 !take160401
 
-!take160401            q_p=0.0d0  !140602”O‚Ì‚½‚ßƒ[ƒƒNƒŠƒA
+!take160401            q_p=0.0d0  !140602å¿µã®ãŸã‚ã‚¼ãƒ­ã‚¯ãƒªã‚¢
             if(p_inout(i)==1) then
               if(p_mxindx(i)>1) then
                 write(*,*) 'Pump-cell is not allowed multiple selection with pump outlet'
@@ -3005,22 +3005,22 @@ L1:	do i=1,p_num
               end if
             end if
 
-			if(p_inout(i)==1) cycle L1  !oŒûƒZƒ‹‚Ìê‡
+			if(p_inout(i)==1) cycle L1  !å‡ºå£ã‚»ãƒ«ã®å ´åˆ
 
-			!140602p_wlin=h(p_indx(i,1,1),p_indx(i,2,1))   !“à…ˆÊ(“üŒû‘¤…ˆÊ)
-            !p_wlin=hn(p_indx(i,1,1),p_indx(i,2,1))   !“à…ˆÊ(“üŒû‘¤…ˆÊ)
+			!140602p_wlin=h(p_indx(i,1,1),p_indx(i,2,1))   !å†…æ°´ä½(å…¥å£å´æ°´ä½)
+            !p_wlin=hn(p_indx(i,1,1),p_indx(i,2,1))   !å†…æ°´ä½(å…¥å£å´æ°´ä½)
 
             
 L5:         do l=1,p_mxindx(i)
-            q_p=0.0d0  !140602”O‚Ì‚½‚ßƒ[ƒƒNƒŠƒA	!take160401
+            q_p=0.0d0  !140602å¿µã®ãŸã‚ã‚¼ãƒ­ã‚¯ãƒªã‚¢	!take160401
 
-			!ƒ|ƒ“ƒv“üŒû’n“_‚Ì…[‚ªhminˆÈ‰º(‰‰ZŒë·l—¶)‚Ìê‡‰½‚à‚µ‚È‚¢
-            p_wlin=hn(p_indx(i,1,l),p_indx(i,2,l))   !“à…ˆÊ(“üŒû‘¤…ˆÊ)
+			!ãƒãƒ³ãƒ—å…¥å£åœ°ç‚¹ã®æ°´æ·±ãŒhminä»¥ä¸‹(æ¼”ç®—èª¤å·®è€ƒæ…®)ã®å ´åˆä½•ã‚‚ã—ãªã„
+            p_wlin=hn(p_indx(i,1,l),p_indx(i,2,l))   !å†…æ°´ä½(å…¥å£å´æ°´ä½)
 
             !if(p_wlin<=eta(p_indx(i,1,1),p_indx(i,2,1))+hmin+1.0e-6) cycle L1
             if(p_wlin>=eta(p_indx(i,1,l),p_indx(i,2,l))+hmin+1.0e-6) then
 
-			if(p_method(i)==0) then     !ƒ|ƒ“ƒv”r…—Ê‚ª©“®‚Ìê‡
+			if(p_method(i)==0) then     !ãƒãƒ³ãƒ—æ’æ°´é‡ãŒè‡ªå‹•ã®å ´åˆ
 				if(p_wlin>=p_startope(i).and.p_wlin<p_stopope(i)) then
 					q_p=p_qmax(i)
                     qlim=(p_wlin-p_startope(i))*area(p_indx(i,1,l),p_indx(i,2,l))/dt
@@ -3031,7 +3031,7 @@ L5:         do l=1,p_mxindx(i)
 				else
 					q_p=0.0d0
 				end if
-			elseif(p_method(i)==1) then !ƒ|ƒ“ƒv”r…—Ê‚ªè“®‚Ìê‡
+			elseif(p_method(i)==1) then !ãƒãƒ³ãƒ—æ’æ°´é‡ãŒæ‰‹å‹•ã®å ´åˆ
 				if(time<=0.0d0) then
 					q_p=p_qout(i,1)
 				else if(time>=p_time(i,p_size(i))) then
@@ -3049,41 +3049,41 @@ L5:         do l=1,p_mxindx(i)
                             !write(*,*) p_indx(i,1,l), p_indx(i,1,l), qlim,q_p
 			end if
 
-			!ˆÚ“®‰Â”\—Ê‚Å§Œä
+			!ç§»å‹•å¯èƒ½é‡ã§åˆ¶å¾¡
 			if(qlim<q_p) q_p=qlim
-            q_swap(p_indx(i,1,l),p_indx(i,2,l))=q_swap(p_indx(i,1,l),p_indx(i,2,l))-q_p !“üŒûƒZƒ‹(—¬o)
+            q_swap(p_indx(i,1,l),p_indx(i,2,l))=q_swap(p_indx(i,1,l),p_indx(i,2,l))-q_p !å…¥å£ã‚»ãƒ«(æµå‡º)
             q_pin(i)=q_pin(i)+q_p !take160401
-			!o—Í—p140602
+			!å‡ºåŠ›ç”¨140602
 			p_qswap(i)=-q_p
 
             end if
 
             end do L5  
 
-			!oŒûƒZƒ‹‚ª‘¶İ‚·‚éê‡
+			!å‡ºå£ã‚»ãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆ
 L2:		do j=1,p_num
 				if(i==j) cycle L2
-				if(p_inout(j)==0) cycle L2  !“üŒûƒZƒ‹‚Ìê‡
-				if(p_couple_num(i)/=p_couple_num(j)) cycle L2   !Gate”Ô†‚Ìˆê’v‚ÌŠm”F
-!take160401                q_swap(p_indx(j,1,1),p_indx(j,2,1))=q_swap(p_indx(j,1,1),p_indx(j,2,1))+q_p !oŒûƒZƒ‹(—¬“ü)
-                q_swap(p_indx(j,1,1),p_indx(j,2,1))=q_swap(p_indx(j,1,1),p_indx(j,2,1))+q_pin(i) !oŒûƒZƒ‹(—¬“ü)
-				!o—Í—p140602
+				if(p_inout(j)==0) cycle L2  !å…¥å£ã‚»ãƒ«ã®å ´åˆ
+				if(p_couple_num(i)/=p_couple_num(j)) cycle L2   !Gateç•ªå·ã®ä¸€è‡´ã®ç¢ºèª
+!take160401                q_swap(p_indx(j,1,1),p_indx(j,2,1))=q_swap(p_indx(j,1,1),p_indx(j,2,1))+q_p !å‡ºå£ã‚»ãƒ«(æµå…¥)
+                q_swap(p_indx(j,1,1),p_indx(j,2,1))=q_swap(p_indx(j,1,1),p_indx(j,2,1))+q_pin(i) !å‡ºå£ã‚»ãƒ«(æµå…¥)
+				!å‡ºåŠ›ç”¨140602
 !take160401                p_qswap(j)=q_p
                 p_qswap(j)=q_pin(i)
 			end do L2
 		end do L1
         deallocate(q_pin) !take160401
 
-		!oŒû‘¤‚Éƒ|ƒ“ƒv”r…—Ê‚ğƒf[ƒ^‚Å—^‚¦‚éê‡
+		!å‡ºå£å´ã«ãƒãƒ³ãƒ—æ’æ°´é‡ã‚’ãƒ‡ãƒ¼ã‚¿ã§ä¸ãˆã‚‹å ´åˆ
 L3:	do i=1,p_num
-			q_p=0.0d0  !140602”O‚Ì‚½‚ßƒ[ƒƒNƒŠƒA
-			if(p_inout(i)==0) cycle L3  !“üŒûƒZƒ‹‚Ìê‡
+			q_p=0.0d0  !140602å¿µã®ãŸã‚ã‚¼ãƒ­ã‚¯ãƒªã‚¢
+			if(p_inout(i)==0) cycle L3  !å…¥å£ã‚»ãƒ«ã®å ´åˆ
 L4:		do j=1,p_num
 				if(i==j) cycle L4
-				if(p_couple_num(i)==p_couple_num(j)) cycle L3 !PUMP”Ô†‚Ìˆê’v‚ÌŠm”F
+				if(p_couple_num(i)==p_couple_num(j)) cycle L3 !PUMPç•ªå·ã®ä¸€è‡´ã®ç¢ºèª
 			end do L4
 
-			!PUMP‚ªoŒû‚Ì‚İ‚Ìê‡
+			!PUMPãŒå‡ºå£ã®ã¿ã®å ´åˆ
 			if(time<=0.0d0) then
 				q_p=p_qout(i,1)
 			else if(time>=p_time(i,p_size(i))) then
@@ -3097,8 +3097,8 @@ L4:		do j=1,p_num
 				end do
 			end if
 
-			q_swap(p_indx(i,1,1),p_indx(i,2,1))=q_swap(p_indx(i,1,1),p_indx(i,2,1))+q_p !oŒûƒZƒ‹(—¬“ü)
-			!o—Í—p140602
+			q_swap(p_indx(i,1,1),p_indx(i,2,1))=q_swap(p_indx(i,1,1),p_indx(i,2,1))+q_p !å‡ºå£ã‚»ãƒ«(æµå…¥)
+			!å‡ºåŠ›ç”¨140602
 			p_qswap(j)=q_p
 
 		end do L3
