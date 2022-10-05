@@ -1,3 +1,8 @@
+@echo off
+
+call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat" intel64 vs2022
+
+
 ifort 	.\src\common_hh.f90 ^
 		.\src\GridCoordMod.F90 ^
 		.\src\GridCondMod.F90 ^
